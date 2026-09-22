@@ -1,0 +1,12 @@
+.env
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.egg-info/
+.DS_Store
+.vscode/
+.idea/*
+feature_repo/feature_repo/data/registry.db
+feature_repo/feature_repo/materialize_log.txt
+data/transactions.parquet

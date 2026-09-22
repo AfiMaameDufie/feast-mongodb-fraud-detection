@@ -1,0 +1,13 @@
+project: fraud_detection
+registry: data/registry.db
+provider: local
+
+offline_store:
+  type: file
+
+online_store:
+  type: mongodb
+  connection_string: ${MONGODB_URI}
+  database_name: fraud_detection
+
+entity_key_serialization_version: 3

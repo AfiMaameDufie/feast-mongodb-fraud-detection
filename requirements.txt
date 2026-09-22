@@ -1,0 +1,7 @@
+django-mongodb-backend
+python-dotenv
+feast
+scikit-learn
+pandas
+numpy
+pyarrow
