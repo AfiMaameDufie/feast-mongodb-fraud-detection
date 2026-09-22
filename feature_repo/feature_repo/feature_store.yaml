@@ -8,6 +8,8 @@ offline_store:
 online_store:
   type: mongodb
   connection_string: ${MONGODB_URI}
-  database_name: fraud_detection
+  # Same database Django writes to, so the online store and the transaction
+  # collection live side by side. Must match DB_NAME in .env.
+  database_name: ${DB_NAME}
 
 entity_key_serialization_version: 3

@@ -1,18 +1,20 @@
 from datetime import timedelta
+from pathlib import Path
+
 from feast import Entity, FeatureView, Field, FileSource
-from feast.types import Float32, Int64, String
+from feast.types import Float32, String
 from feast.value_type import ValueType
 
-# Entities are what we used to look up features and in this case is the customer_id
-user = Entity(
-    name="user_id", 
-    join_keys=["user_id"], 
-    value_type=ValueType.INT64,
-)
+# An entity is the key that features are looked up by. Here that is the user.
+user = Entity(name="user_id", join_keys=["user_id"], value_type=ValueType.INT64)
 
-# Directs Feast to the source of data(parquet file) as Feast does not go through the Django ORM to get the data.
+# Feast reads the Parquet file directly; it does not go through the Django ORM.
+# Resolve the path relative to this file so `feast` commands work from any
+# working directory.
+DATA_PATH = Path(__file__).resolve().parents[2] / "data" / "transactions.parquet"
+
 transaction_source = FileSource(
-    path="../../data/transactions.parquet",
+    path=str(DATA_PATH),
     timestamp_field="event_timestamp",
     created_timestamp_column="created_timestamp",
 )
