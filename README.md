@@ -16,8 +16,7 @@ pip install -r requirements.txt
 
 # Create a .env file with SECRET_KEY, MONGODB_URI, and DB_NAME (see tutorial.md)
 
-# The `feast` CLI reads MONGODB_URI and DB_NAME from the environment. It does
-# not load .env, because Django's settings.py is not imported by the CLI.
+# The `feast` CLI reads MONGODB_URI and DB_NAME from the environment.
 set -a; source .env; set +a
 
 python data/generate_transactions.py
