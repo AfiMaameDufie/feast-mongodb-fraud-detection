@@ -5,7 +5,7 @@ from feast import Entity, FeatureView, Field, FileSource
 from feast.types import Float32, String
 from feast.value_type import ValueType
 
-# An entity is the key that features are looked up by. Here that is the user.
+# An entity is the key that features are looked up by.
 user = Entity(name="user_id", join_keys=["user_id"], value_type=ValueType.INT64)
 
 # Feast reads the Parquet file directly; it does not go through the Django ORM.
