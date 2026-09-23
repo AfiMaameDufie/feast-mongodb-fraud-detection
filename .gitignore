@@ -10,3 +10,4 @@ __pycache__/
 feature_repo/feature_repo/data/registry.db
 feature_repo/feature_repo/materialize_log.txt
 data/transactions.parquet
+training/model_params.json

@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 import pandas as pd
 from django.core.management.base import BaseCommand
 from transactions.models import Transaction
@@ -10,19 +12,21 @@ class Command(BaseCommand):
             "--path",
             default="data/transactions.parquet",
             help="Path to the Parquet file containing transaction data",
-        )   
+        )
 
     def handle(self, *args, **options):
         df = pd.read_parquet(options["path"])
         transactions = [
             Transaction(
-                user_id=row.user_id,
+                # Cast out of numpy scalars: `amount` is a float64, which a
+                # DecimalField cannot store exactly, and `user_id` is an int64.
+                user_id=int(row.user_id),
                 transaction_id=row.transaction_id,
-                amount=row.amount,
+                amount=Decimal(f"{row.amount:.2f}"),
                 category=row.category,
                 location=row.location,
                 timestamp=row.event_timestamp,
-                is_fraudulent=row.is_fraudulent,
+                is_fraudulent=bool(row.is_fraudulent),
             )
             for row in df.itertuples()
         ]

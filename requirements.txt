@@ -1,7 +1,7 @@
-django-mongodb-backend
-python-dotenv
-feast
-scikit-learn
-pandas
-numpy
-pyarrow
+django-mongodb-backend==6.1.0
+python-dotenv==1.1.1
+feast==0.66.0
+pymongo==4.18.1
+pandas==2.3.3
+numpy==2.5.3
+pyarrow==25.0.1
