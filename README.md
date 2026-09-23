@@ -52,13 +52,3 @@ curl http://127.0.0.1:8000/score/2/
   "is_potentially_fraudulent": false
 }
 ```
-
-### A note on the fraud label
-
-The online store keeps only each entity's **latest** feature values. With the
-default seed the single injected fraudulent transaction belongs to `user_id=1`
-and is followed by four later transactions, so it is overwritten during
-materialization and no user scores as fraudulent. That is the feature store
-behaving correctly, not a bug -- but it does mean this demo shows the plumbing
-rather than a positive detection. To see a flagged transaction, generate data
-where the inflated amount is a user's most recent one.
