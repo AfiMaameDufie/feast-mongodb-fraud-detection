@@ -9,8 +9,6 @@ from feast.value_type import ValueType
 user = Entity(name="user_id", join_keys=["user_id"], value_type=ValueType.INT64)
 
 # Feast reads the Parquet file directly; it does not go through the Django ORM.
-# Resolve the path relative to this file so `feast` commands work from any
-# working directory.
 TRANSACTIONS_PARQUET_FILE = (
     Path(__file__).resolve().parents[2] / "data" / "transactions.parquet"
 )
