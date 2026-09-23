@@ -5,7 +5,7 @@ from pathlib import Path
 import pandas as pd
 import numpy as np
 
-OUTPUT_PATH = Path(__file__).resolve().parent / "transactions.parquet"
+TRANSACTIONS_PARQUET_FILE = Path(__file__).resolve().parent / "transactions.parquet"
 
 random_generator = np.random.default_rng(seed=42)
 N, FRAUD_RATE = 50, 0.02
@@ -27,6 +27,6 @@ df.loc[fraud_indices, "is_fraudulent"] = True
 df.loc[fraud_indices, "amount"] *= random_generator.uniform(5, 10, len(fraud_indices))   # Inflate the amount for fraudulent transactions
 df["created_timestamp"] = df["event_timestamp"]
 
-df.to_parquet(OUTPUT_PATH, index=False)
+df.to_parquet(TRANSACTIONS_PARQUET_FILE, index=False)
 print(f"Wrote {len(df)} transactions to parquet file, {df['is_fraudulent'].sum()} of which are fraudulent.")
 

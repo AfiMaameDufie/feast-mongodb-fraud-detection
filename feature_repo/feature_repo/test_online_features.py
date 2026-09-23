@@ -2,10 +2,6 @@
 Confirms Feast can read materialized features back out of MongoDB
 via get_online_features() -- the same call the Django scoring view
 will make at request time.
-
-The work is behind a __main__ guard because `feast apply` imports every
-module in the feature repo to discover definitions. Without the guard the
-lookup would run during `feast apply`, before the feature view is registered.
 """
 
 from pathlib import Path

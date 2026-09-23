@@ -11,10 +11,12 @@ user = Entity(name="user_id", join_keys=["user_id"], value_type=ValueType.INT64)
 # Feast reads the Parquet file directly; it does not go through the Django ORM.
 # Resolve the path relative to this file so `feast` commands work from any
 # working directory.
-DATA_PATH = Path(__file__).resolve().parents[2] / "data" / "transactions.parquet"
+TRANSACTIONS_PARQUET_FILE = (
+    Path(__file__).resolve().parents[2] / "data" / "transactions.parquet"
+)
 
 transaction_source = FileSource(
-    path=str(DATA_PATH),
+    path=str(TRANSACTIONS_PARQUET_FILE),
     timestamp_field="event_timestamp",
     created_timestamp_column="created_timestamp",
 )

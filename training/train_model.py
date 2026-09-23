@@ -3,7 +3,7 @@ Retrieves point-in-time training data from Feast's offline store, then
 "trains" a z-score model on it.
 
 The model parameters are written to training/model_params.json so that the
-Django view reads them instead of having them copied in by hand.
+Django view reads them instead of having to copy them in by hand.
 """
 
 import json
@@ -13,10 +13,11 @@ import pandas as pd
 from feast import FeatureStore
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+TRANSACTIONS_PARQUET_FILE = BASE_DIR / "data" / "transactions.parquet"
 PARAMS_PATH = Path(__file__).resolve().parent / "model_params.json"
 
 store = FeatureStore(repo_path=str(BASE_DIR / "feature_repo" / "feature_repo"))
-transactions_df = pd.read_parquet(BASE_DIR / "data" / "transactions.parquet")
+transactions_df = pd.read_parquet(TRANSACTIONS_PARQUET_FILE)
 
 entity_df = transactions_df[["user_id", "event_timestamp"]].copy()
 
